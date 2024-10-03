@@ -4,7 +4,7 @@ name = "rust-walker"
 version = "0.0.0"
 
 [lib]
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "lib"]
 
 [dependencies]
 fastrand = "2.1.1"
@@ -12,6 +12,7 @@ fastrand = "2.1.1"
 napi = { version = "2.12.2", default-features = false, features = ["napi4"] }
 napi-derive = "2.12.2"
 num_cpus = "1.16.0"
+rustc-hash = "2.0.0"
 serde = "1.0.210"
 serde_json = "1.0.128"
 
@@ -21,3 +22,17 @@ napi-build = "2.0.1"
 [profile.release]
 lto = true
 strip = "symbols"
+debug = false
+opt-level = 3
+codegen-units = 1
+panic = 'abort'
+overflow-checks = false
+target-cpu = "native"
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "benchmark"
+path = "benches/benchmark.rs"
+harness = false

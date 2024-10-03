@@ -1,8 +1,7 @@
-use napi::bindgen_prelude::Int32Array;
-use std::collections::HashMap;
+use rustc_hash::FxHashMap;
 
 pub struct Counter {
-  counts: HashMap<i32, i32>,
+  counts: FxHashMap<i32, i32>,
 }
 
 impl Default for Counter {
@@ -14,7 +13,7 @@ impl Default for Counter {
 impl Counter {
   pub fn new() -> Self {
     Self {
-      counts: HashMap::new(),
+      counts: FxHashMap::default(),
     }
   }
 
@@ -24,10 +23,6 @@ impl Counter {
 
   pub fn to_json(self) -> String {
     serde_json::to_string(&self.counts).unwrap()
-  }
-
-  pub fn to_js(&self) -> Int32Array {
-    Int32Array::new(self.counts.values().cloned().collect::<Vec<_>>())
   }
 
   pub fn add_counter(&mut self, other: &Counter) {
