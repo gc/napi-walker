@@ -1,15 +1,15 @@
 {
   "name": "@gc/rust-walker-win32-x64-msvc",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "os": [
     "win32"
   ],
   "cpu": [
     "x64"
   ],
-  "main": "@gc/rust-walker.win32-x64-msvc.node",
+  "main": "rust-walker.win32-x64-msvc.node",
   "files": [
-    "@gc/rust-walker.win32-x64-msvc.node"
+    "rust-walker.win32-x64-msvc.node"
   ],
   "license": "MIT",
   "engines": {
