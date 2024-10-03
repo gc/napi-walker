@@ -9,8 +9,8 @@ pub struct WalkerTable {
 impl WalkerTable {
   pub fn new(aliases: Vec<usize>, probs: Vec<f32>) -> WalkerTable {
     WalkerTable {
-      aliases: aliases,
-      probs: probs,
+      aliases,
+      probs,
     }
   }
 

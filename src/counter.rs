@@ -5,6 +5,12 @@ pub struct Counter {
   counts: HashMap<i32, i32>,
 }
 
+impl Default for Counter {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Counter {
   pub fn new() -> Self {
     Self {

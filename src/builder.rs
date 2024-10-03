@@ -54,7 +54,7 @@ impl WalkerTableBuilder {
 
   /// Calculates the sum of `index_weights`.
   fn sum(&self) -> u32 {
-    self.index_weights.iter().fold(0, |acc, cur| acc + cur)
+    self.index_weights.iter().sum::<u32>()
   }
 
   /// Calculates the mean of `index_weights`.
@@ -75,7 +75,7 @@ impl WalkerTableBuilder {
         Some(below) => {
           if let Some(above) = above_vec.pop() {
             let diff = mean - below.1;
-            aliases[below.0] = above.0 as usize;
+            aliases[below.0] = above.0;
             probs[below.0] = diff as f32 / mean as f32;
             if above.1 - diff <= mean {
               below_vec.push((above.0, above.1 - diff));
