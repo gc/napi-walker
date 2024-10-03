@@ -6,9 +6,9 @@ pub struct Counter {
 }
 
 impl Default for Counter {
-    fn default() -> Self {
-        Self::new()
-    }
+  fn default() -> Self {
+    Self::new()
+  }
 }
 
 impl Counter {
