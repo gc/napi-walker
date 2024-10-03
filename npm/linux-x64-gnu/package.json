@@ -15,6 +15,7 @@
   "engines": {
     "node": ">= 10"
   },
+  "repository": "https://github.com/gc/napi-walker",
   "libc": [
     "glibc"
   ]
