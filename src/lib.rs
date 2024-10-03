@@ -18,6 +18,13 @@ pub fn roll_walker_table(quantity: i32, index_weights: Float32Array) -> String {
   let builder = WalkerTableBuilder::new(&index_weights);
   let wa_table = Arc::new(builder.build());
 
+  let mut result = Counter::new();
+
+  if index_weights.len() == 1 {
+    result.add(0, quantity);
+    return result.to_json();
+  }
+
   let num_cpus = num_cpus::get();
   let rolls_per_thread = quantity / num_cpus as i32;
   let remainder = quantity % num_cpus as i32;
@@ -34,7 +41,6 @@ pub fn roll_walker_table(quantity: i32, index_weights: Float32Array) -> String {
     handles.push(thread::spawn(move || table.next(qty)));
   }
 
-  let mut result = Counter::new();
   for handle in handles {
     let loot = handle.join().unwrap();
     result.add_counter(&loot);

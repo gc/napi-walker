@@ -34,3 +34,11 @@ test('test 4', (t) => {
   const sum = Object.values(result).reduce((acc, item) => acc + item, 0);
   t.is(sum, 1);
 })
+
+
+test('test 5', (t) => {
+  const items = [1];
+  const result = run(1, (items));
+  const sum = Object.values(result).reduce((acc, item) => acc + item, 0);
+  t.is(sum, 1);
+})
