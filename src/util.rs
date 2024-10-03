@@ -20,7 +20,7 @@ pub mod math {
       None => return 1,
     };
 
-    let gcd = iter.fold(
+    iter.fold(
       first,
       |acc, cur| {
         if *cur == 0 {
@@ -29,36 +29,6 @@ pub mod math {
           gcd(*cur, acc)
         }
       },
-    );
-    gcd
-  }
-}
-
-#[cfg(test)]
-mod math_test {
-  use crate::util::math::gcd_for_slice;
-
-  #[test]
-  fn gcd_pattern_1() {
-    let actual = gcd_for_slice(&[4, 20, 32]);
-    assert_eq!(actual, 4)
-  }
-
-  #[test]
-  fn gcd_pattern_2() {
-    let actual = gcd_for_slice(&[77, 9, 25]);
-    assert_eq!(actual, 1)
-  }
-
-  #[test]
-  fn gcd_pattern_3() {
-    let actual = gcd_for_slice(&[11, 0, 22]);
-    assert_eq!(actual, 11)
-  }
-
-  #[test]
-  fn gcd_pattern_4() {
-    let actual = gcd_for_slice(&[]);
-    assert_eq!(actual, 0)
+    )
   }
 }

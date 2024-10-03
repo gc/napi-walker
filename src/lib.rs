@@ -9,12 +9,12 @@ use std::thread;
 
 use builder::{NewBuilder, WalkerTableBuilder};
 use counter::Counter;
-use napi::bindgen_prelude::{Float32Array, Int32Array};
+use napi::bindgen_prelude::Float32Array;
 pub mod counter;
 mod util;
 
 #[napi]
-pub fn roll_walker_table(quantity: i32, index_weights: Float32Array) -> Int32Array {
+pub fn roll_walker_table(quantity: i32, index_weights: Float32Array) -> String {
   let builder = WalkerTableBuilder::new(&index_weights);
   let wa_table = builder.build();
 
@@ -39,5 +39,5 @@ pub fn roll_walker_table(quantity: i32, index_weights: Float32Array) -> Int32Arr
     result.add_counter(&wa_table.next(remainder));
   }
 
-  result.to_js()
+  result.to_json()
 }

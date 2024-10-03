@@ -83,7 +83,7 @@ impl WalkerTableBuilder {
               above_vec.push((above.0, above.1 - diff));
             }
           } else {
-            aliases[below.0] = below.0 as usize;
+            aliases[below.0] = below.0;
             probs[below.0] = below.1 as f32 / mean as f32;
           }
         }
