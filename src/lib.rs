@@ -20,6 +20,8 @@ pub fn roll_walker_table(quantity: i32, index_weights: Float32Array) -> Int32Arr
 
   let num_cpus = num_cpus::get();
   let rolls_per_thread = quantity / num_cpus as i32;
+  let remainder = quantity % num_cpus as i32;
+
   let mut handles: Vec<thread::JoinHandle<Counter>> = vec![];
 
   for _ in 0..num_cpus {
@@ -31,6 +33,10 @@ pub fn roll_walker_table(quantity: i32, index_weights: Float32Array) -> Int32Arr
   for handle in handles {
     let loot = handle.join().unwrap();
     result.add_counter(&loot);
+  }
+
+  if remainder > 0 {
+    result.add_counter(&wa_table.next(remainder));
   }
 
   result.to_js()

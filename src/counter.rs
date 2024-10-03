@@ -16,7 +16,9 @@ impl Counter {
   }
 
   pub fn to_js(&self) -> Int32Array {
-    Int32Array::new(self.counts.clone())
+    let mut result = self.counts.clone();
+    result.retain(|&x| x != 0);
+    Int32Array::new(result)
   }
 
   pub fn add_counter(&mut self, other: &Counter) {
