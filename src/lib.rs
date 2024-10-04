@@ -48,3 +48,15 @@ pub fn roll_walker_table(quantity: i32, index_weights: Float32Array) -> String {
 
   result.to_json()
 }
+
+#[napi]
+pub fn simulate_chances(rolls: u32, chance: u16) -> u32 {
+  let mut success_count = 0;
+  let mut rng = fastrand::Rng::new();
+  for _ in 0..rolls {
+    if rng.u16(0..chance) == 0 {
+      success_count += 1;
+    }
+  }
+  success_count
+}

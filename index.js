@@ -310,6 +310,7 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { rollWalkerTable } = nativeBinding
+const { rollWalkerTable, simulateChances } = nativeBinding
 
 module.exports.rollWalkerTable = rollWalkerTable
+module.exports.simulateChances = simulateChances
